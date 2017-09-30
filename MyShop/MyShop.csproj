@@ -52,6 +52,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Database.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DllManager.cs" />
     <Compile Include="File.cs" />
     <Compile Include="Flower.cs" />
     <Compile Include="Product.cs" />
