@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 
+
 namespace ClientOfMyShop
 {
     class Program
     {
         static void Main(string[] args)
         {
+            
 
             Console.WriteLine("Client Starts;");
             Socket ClientSocket = new Socket(SocketType.Stream, ProtocolType.Tcp);
 
-            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse("192.168.0.105"), 1080);
+            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse("192.168.0.103"), 1080);
 
             ClientSocket.Connect(endPoint);
 

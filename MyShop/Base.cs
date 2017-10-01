@@ -9,7 +9,7 @@ namespace MyShop
 {
     class Base
     {
-        public Flower[] flowers = null;
+        public Product[] flowers = null;
         public int numberOfProducts = 100;
 
         public void InitBase()
@@ -21,13 +21,13 @@ namespace MyShop
 
             numberOfProducts = Convert.ToInt32(Console.ReadLine());
 
-            flowers = new Flower[numberOfProducts];
+            flowers = new Product[numberOfProducts];
 
             Random rnd = new Random();
 
             for (int i = 0; i < numberOfProducts; ++i)
             {
-                flowers[i] = new Flower(names[rnd.Next(0, 4)], rnd.NextDouble() * 10, rnd.Next(1, 1000), colors[rnd.Next(0, 3)]);
+                // flowers[i] = new Product(names[rnd.Next(0, 4)], rnd.NextDouble() * 10, rnd.Next(1, 1000), colors[rnd.Next(0, 3)]);
             }
         }
 
@@ -37,7 +37,7 @@ namespace MyShop
 
             for (int i = 0; i < numberOfProducts; ++i)
             {
-                Console.WriteLine("Name: {0}, price: {1}, amount: {2}, color: {3}", flowers[i].mName, flowers[i].mPrice, flowers[i].mAmount, flowers[i].mColor);
+                Console.WriteLine("Name: {0}, price: {1}, amount: {2}, color: {3}", flowers[i].mName, flowers[i].mPrice, flowers[i].mAmount/*, flowers[i].mColor*/);
             }
             Console.ForegroundColor = ConsoleColor.White;
         }
@@ -48,7 +48,7 @@ namespace MyShop
 
             for (int i = 0; i < this.numberOfProducts; ++i)
             {
-                sw.WriteLine(this.flowers[i].mName + ' ' + this.flowers[i].mPrice + ' ' + this.flowers[i].mAmount + ' ' + this.flowers[i].mColor);
+                sw.WriteLine(this.flowers[i].mName + ' ' + this.flowers[i].mPrice + ' ' + this.flowers[i].mAmount + ' '/* + this.flowers[i].mColor*/);
             }
             sw.Close();
             Console.WriteLine("Changes saved.");

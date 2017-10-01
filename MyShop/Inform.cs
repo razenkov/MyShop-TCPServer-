@@ -23,31 +23,6 @@ namespace MyShop
 
     }
 
-    class LoadLibrarys
-    {
-        public List<string> GetDlls(string path, ref int numOfDlls)
-        {
-            
-            string[] fileEntries = Directory.GetFiles(path);
-
-            List<string> dllsNames = new List<string>();
-
-            //for (int i = 0; i < fileEntries.Length; ++i)
-            //{
-            //    Console.WriteLine(fileEntries[i]);
-            //}
-            
-            for (int i = 0; i < fileEntries.Length; ++i)
-            {
-                if (fileEntries[i].EndsWith(".dll"))
-                    //File.Delete(fileEntries[i]);
-                    dllsNames.Add(fileEntries[i]);
-            }
-
-            foreach (string i in dllsNames)
-                Console.WriteLine(i);
-            return dllsNames;
-        }
-    }
+    
 
 }

@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace MyShop
 {
-    class ConsoleOut
+    abstract class Product
     {
-        public void PrintToConsole(Product product) {}
+        public string mName;
+        public int mAmount;
+        public double mPrice;
     }
 }
+

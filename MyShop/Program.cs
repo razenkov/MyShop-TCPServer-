@@ -12,21 +12,14 @@ namespace MyShop
         {
             //develop
             new MyShop().Start();
+            
+            //restore data_base
 
+            //restore users_base
+            //new UserBase.Restore();
 
-
-           
-
-
-
-
-
-
-
-
-
-
-
+            //startup server
+            //new Server().StartUp();
         }
     }
 }

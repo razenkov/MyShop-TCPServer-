@@ -15,13 +15,16 @@ namespace MyShop
 
         public void ShowAllAvaliableDlls()
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("ShowAllAvaliableDlls()");
+            Console.ForegroundColor = ConsoleColor.White;
+
             string path = @"C:\Users\adm1n\Documents\Visual Studio 2017\Projects\MyShop\MyShop";
             
             string[] filesPathes = Directory.GetFiles(path);
 
             List<string> dllsPathes = new List<string>();
-            //List<string> dllsNames = new List<string>();
-
+            
             for (int i = 0; i < filesPathes.Length; ++i)
             {
                 if (filesPathes[i].EndsWith(".dll"))
@@ -49,15 +52,32 @@ namespace MyShop
 
         public void LoadDlls()
         {
-            
-            //Assembly a1 = Assembly.Load(TrimedFront);
-            Console.WriteLine("Assembly.Load(namesOfDll[1]); - DONE");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("LoadDlls()");
+            Console.ForegroundColor = ConsoleColor.White;
 
-            //Object o = a1.CreateInstance("vscode");
-            //Type t = a1.GetType("vscode");
+            void LoadDll(string name)
+            {
+                Assembly a1 = Assembly.Load(name);
+                if (a1 != null)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Assembly.Load(namesOfDll[1]); - DONE");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Dll" + name + "was not loaded.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
 
-            //MethodInfo mi = t.GetMethod("GetName");
-            //Console.WriteLine(mi.Invoke(o, null));
+                Object o = a1.CreateInstance(name);
+                Type t = a1.GetType(name);
+                MethodInfo mi = t.GetMethod("GetName");
+                Console.WriteLine(mi.Invoke(o, null));
+            }
+            dllsNames.ForEach(LoadDll);
         }
     }
 }

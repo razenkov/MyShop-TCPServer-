@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace MyShop
 {
-    class MyShop
+    class UserBase
     {
-        public void Start()
-        {
-            new DllManager().ShowAllAvaliableDlls();
-            //new DllManager().LoadDlls();
-        }
-
         
+        public static List<User> userBase;
+
+        public void Restore()
+        {
+            Console.WriteLine("Restore User Base");
+        }
     }
 }

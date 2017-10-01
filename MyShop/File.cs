@@ -17,7 +17,7 @@ namespace MyShop
 
             for (int i = 0; i < MyBase.numberOfProducts; ++i)
             {
-                sw.WriteLine(MyBase.flowers[i].mName + ' ' + MyBase.flowers[i].mPrice + ' ' + MyBase.flowers[i].mAmount + ' ' + MyBase.flowers[i].mColor);
+                sw.WriteLine(MyBase.flowers[i].mName + ' ' + MyBase.flowers[i].mPrice + ' ' + MyBase.flowers[i].mAmount + ' '/* + MyBase.flowers[i].mColor*/);
             }
             sw.Close();        
             Console.WriteLine("Changes saved.");
