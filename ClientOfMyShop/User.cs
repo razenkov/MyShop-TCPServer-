@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace MyShop
+namespace ClientOfMyShop
 {
     public class User
     {
@@ -14,9 +14,22 @@ namespace MyShop
         public int Age;
         double Account;
         public int Hash;
-        public string ID;
+        public string Id;
 
         Product[] AlreadyBuy;
+
+        public User()
+        {
+            Random r = new Random();
+            this.Name = "default_name";
+            this.Soname = "default_soname";
+            this.Age = r.Next(1, 99);
+            this.Account = 99.99;
+            this.Id = Guid.NewGuid().ToString();
+            //Console.WriteLine("new user ID = " + this.ID);
+
+        }
+
 
         public User(string name, string soname, int age, double account)
         {
@@ -29,24 +42,27 @@ namespace MyShop
             else
                 this.Account = 100.0;
 
-            this.ID = Guid.NewGuid().ToString();
-            Console.WriteLine("new user ID = " + this.ID);
+            this.Id = Guid.NewGuid().ToString();
+            Console.WriteLine("new user ID = " + this.Id);
+
+
+
+        }
+
+        
+        public class ID
+        {
+            public void StoreUserID(string id)
+            {
+                StreamWriter sw = new StreamWriter(@"C:\Users\adm1n\Documents\Visual Studio 2017\Projects\MyShop\ClientOfMyShop\userID.txt");
+                sw.WriteLine(id);
+            }
+
+            public string RestoreUserID()
+            {
+                StreamReader sr = new StreamReader(@"C:\Users\adm1n\Documents\Visual Studio 2017\Projects\MyShop\ClientOfMyShop\userID.txt");
+                return sr.ReadLine();
+            }
         }
     }
-
-    public class ID
-    {
-        public void StoreUserID(string id)
-        {
-            StreamWriter sw = new StreamWriter(@"C:\Users\adm1n\Documents\Visual Studio 2017\Projects\MyShop\ClientOfMyShop\userID.txt");
-            sw.WriteLine(id);
-        }
-
-        public string RestoreUserID()
-        {
-            StreamReader sr = new StreamReader(@"C:\Users\adm1n\Documents\Visual Studio 2017\Projects\MyShop\ClientOfMyShop\userID.txt");
-            return sr.ReadLine();
-        }
-    }
-
 }

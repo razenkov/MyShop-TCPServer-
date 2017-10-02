@@ -11,8 +11,15 @@ namespace MyShop
         static void Main(string[] args)
         {
             //develop
-            new MyShop().Start();
+
+            //new MyShop().Start();
+
+            UserBase BaseU = new UserBase();
+            BaseU.SaveUsers();
+           
             
+
+
             //restore data_base
 
             //restore users_base

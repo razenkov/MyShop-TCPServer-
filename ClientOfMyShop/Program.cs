@@ -13,7 +13,11 @@ namespace ClientOfMyShop
     {
         static void Main(string[] args)
         {
-            
+            if (false)
+            {
+                //string CurrentUserID = new ID().RestoreUserID();
+            }
+           
 
             Console.WriteLine("Client Starts;");
             Socket ClientSocket = new Socket(SocketType.Stream, ProtocolType.Tcp);
