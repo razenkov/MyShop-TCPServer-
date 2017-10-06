@@ -10,14 +10,22 @@ namespace MyShop
     {
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.White;
+
             //develop
 
-            //new MyShop().Start();
+            //MyShop MainShop = new MyShop();
+            //MainShop.Start();
 
-            UserBase BaseU = new UserBase();
-            BaseU.SaveUsers();
-           
-            
+            UserBase BaseOfUsers = new UserBase();
+            BaseOfUsers.InitUserBase();
+            BaseOfUsers.ShowUsers();
+            BaseOfUsers.SaveUsers();
+
+
+            BaseOfUsers.RestoreCustomers();
+
+            BaseOfUsers.ShowUsers();
 
 
             //restore data_base

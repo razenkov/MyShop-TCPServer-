@@ -9,51 +9,97 @@ namespace MyShop
 {
     class UserBase
     {
-        public static List<User> userBase;
+        public static User[] Customers;
 
-        public UserBase()
+        public int numberOfCustomers;
+
+        public void NewBase(int num)
         {
-            userBase = new List<User>();
+            Console.WriteLine("NewBase(int num)");
+            numberOfCustomers = num;
 
-        }
-
-        public void InitUserBase(int num)
-        {
-            List<User> tempUserBase = new List<User>();
-
-            for (int i = 0; i < num; ++i)
+            Customers = new User[num];
+            for (int i = 0; i < numberOfCustomers; ++i)
             {
-                userBase.Add(new User());
+                Customers[i] = new User();
             }
+        }
+        
+
+        public void InitUserBase()
+        {
+            Console.WriteLine("---InitUserBase()");
+
+            try
+            {
+                StreamReader sr = new StreamReader(@"C:\Users\adm1n\Documents\Visual Studio 2017\Projects\MyShop\UsersBase.txt");
+
+                int count = 0;
+                Console.WriteLine("Start to restore ecisting Base of Users.");
+
+                while (sr.ReadLine() != null)
+                {
+                    count++;
+                }
+
+                numberOfCustomers = count;
+
+                Customers = new User[count];
+
+                for (int i = 0; i < numberOfCustomers; ++i)
+                {
+                    Customers[i] = new User();
+                    Customers[i].ShowUser();
+                }
+                sr.Close();
+            }
+            catch
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("FileNotFoundExceptions are handled here.");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("New Base Init");
+                this.NewBase(5);
+            }  
         }
 
         public void ShowUsers()
         {
-            userBase.ForEach(ShowUser);
-        }
-
-        public void Restore()
-        {
-            Console.WriteLine("Restore User Base");
-        }
-
-        public void ShowUser(User user)
-        {
-            Console.WriteLine(user.Name + ' ' + user.Soname + ' ' + user.Id);
+            Console.WriteLine("---ShowUsers()");
+            for(int i = 0; i < numberOfCustomers; ++i)
+            {
+                Console.WriteLine(Customers[i].Name + Customers[i].Soname + Customers[i].Id);
+            }
         }
 
         public void SaveUsers()
         {
+            Console.WriteLine("---SaveUsers()");
             StreamWriter sw = new StreamWriter(@"C:\Users\adm1n\Documents\Visual Studio 2017\Projects\MyShop\UsersBase.txt");
-                userBase.ForEach(sw.WriteLine);
+            for(int i = 0; i < numberOfCustomers; ++i)
+            {
+                sw.WriteLine(Customers[i]);
+                sw.Flush();
+            }
             
             sw.Close();
             Console.WriteLine("Changes saved to userbase.");
         }
 
-        public void RestoreUsers()
+        public void RestoreCustomers()
         {
-            Console.WriteLine("RestoreUsers()");
+            Console.WriteLine("---SaveUsers()");
+            StreamReader sr = new StreamReader(@"C:\Users\adm1n\Documents\Visual Studio 2017\Projects\MyShop\UsersBase.txt");
+
+            
+            for(int i = 0; i < numberOfCustomers; ++i)
+            {
+                //Customers[i] = sr.ReadLine();      
+            }
+
+            Console.WriteLine("All users are restored.");
         }
+
+       
     }
 }

@@ -41,8 +41,15 @@ namespace MyShop
             this.Age = r.Next(1, 99);
             this.Account = 99.99;
             this.Id = Guid.NewGuid().ToString();
-            //Console.WriteLine("new user ID = " + this.ID);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("new user ID = " + this.Id);
+            Console.ForegroundColor = ConsoleColor.White;
 
+        }
+
+        public void ShowUser()
+        {
+            Console.WriteLine(this.Name + this.Soname + this.Id);
         }
 
         public class ID
