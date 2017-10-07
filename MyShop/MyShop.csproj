@@ -47,6 +47,7 @@
     <Compile Include="File.cs" />
     <Compile Include="MyShop.cs" />
     <Compile Include="Product.cs" />
+    <Compile Include="ProductBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Inform.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

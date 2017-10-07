@@ -10,22 +10,27 @@ namespace MyShop
     {
         static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.White;
 
             //develop
 
-            //MyShop MainShop = new MyShop();
-            //MainShop.Start();
+            //---MyShop Shop = new MyShop();
+            //---Shop.Start();
 
-            UserBase BaseOfUsers = new UserBase();
-            BaseOfUsers.InitUserBase();
-            BaseOfUsers.ShowUsers();
-            BaseOfUsers.SaveUsers();
+            //---UserBase Userbase = new UserBase();
+            //---Userbase.Start();
+
+            ProductBase Productbase = new ProductBase();
+            Productbase.InitBaseOfProducts();
+            Productbase.ShowProducts();
+
+            Productbase.BinarySaveProducts();
+            Productbase.ShowProducts();
+
+            Productbase.BinaryRestoreProducts();
+            Productbase.ShowProducts();
 
 
-            BaseOfUsers.RestoreCustomers();
 
-            BaseOfUsers.ShowUsers();
 
 
             //restore data_base

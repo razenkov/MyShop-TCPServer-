@@ -7,29 +7,16 @@ using System.IO;
 
 namespace ClientOfMyShop
 {
-    public class User
+    class User
     {
         public string Name;
         public string Soname;
         public int Age;
-        double Account;
+        public double Account;
         public int Hash;
         public string Id;
 
         Product[] AlreadyBuy;
-
-        public User()
-        {
-            Random r = new Random();
-            this.Name = "default_name";
-            this.Soname = "default_soname";
-            this.Age = r.Next(1, 99);
-            this.Account = 99.99;
-            this.Id = Guid.NewGuid().ToString();
-            //Console.WriteLine("new user ID = " + this.ID);
-
-        }
-
 
         public User(string name, string soname, int age, double account)
         {
@@ -44,12 +31,27 @@ namespace ClientOfMyShop
 
             this.Id = Guid.NewGuid().ToString();
             Console.WriteLine("new user ID = " + this.Id);
+        }
 
-
+        public User()
+        {
+            Random r = new Random();
+            this.Name = "default_name";
+            this.Soname = "default_soname";
+            this.Age = r.Next(1, 99);
+            this.Account = 99.99;
+            this.Id = Guid.NewGuid().ToString();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("new user ID = " + this.Id);
+            Console.ForegroundColor = ConsoleColor.White;
 
         }
 
-        
+        public void ShowUser()
+        {
+            Console.WriteLine(this.Name + this.Soname + this.Id);
+        }
+
         public class ID
         {
             public void StoreUserID(string id)

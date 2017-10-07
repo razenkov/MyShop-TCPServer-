@@ -12,7 +12,7 @@ namespace MyShop
         public string Name;
         public string Soname;
         public int Age;
-        double Account;
+        public double Account;
         public int Hash;
         public string Id;
 

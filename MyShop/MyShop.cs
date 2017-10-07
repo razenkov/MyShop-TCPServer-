@@ -10,6 +10,7 @@ namespace MyShop
     {
         public void Start()
         {
+            Console.ForegroundColor = ConsoleColor.White;
             new DllManager().ShowAllAvaliableDlls();
             //new DllManager().LoadDlls();
         }
