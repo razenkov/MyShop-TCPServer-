@@ -13,31 +13,15 @@ namespace MyShop
 
             //develop
 
-            //---MyShop Shop = new MyShop();
-            //---Shop.Start();
+            MyShop Shop = new MyShop();
+            Shop.Start();
 
-            //---UserBase Userbase = new UserBase();
-            //---Userbase.Start();
+            UserBase Userbase = new UserBase();
+            Userbase.Start();
 
             ProductBase Productbase = new ProductBase();
-            Productbase.InitBaseOfProducts();
-            Productbase.ShowProducts();
-
-            Productbase.BinarySaveProducts();
-            Productbase.ShowProducts();
-
-            Productbase.BinaryRestoreProducts();
-            Productbase.ShowProducts();
-
-
-
-
-
-            //restore data_base
-
-            //restore users_base
-            //new UserBase.Restore();
-
+            Productbase.Start();
+           
             //startup server
             //new Server().StartUp();
         }

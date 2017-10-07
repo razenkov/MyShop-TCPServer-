@@ -14,6 +14,8 @@ namespace MyShop
 
         public void Start()
         {
+            Console.WriteLine("Start of product base()");
+            this.InitBaseOfProducts();
 
         }
 
