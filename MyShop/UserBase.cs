@@ -7,10 +7,10 @@ using System.IO;
 
 namespace MyShop
 {
-    class UserBase
+    public class UserBase
     {
-        public static User[] Customers;
-        public static int numberOfCustomers;
+         User[] Customers;
+        public int numberOfCustomers;
 
         public void Start()
         {
@@ -33,8 +33,7 @@ namespace MyShop
                 Customers[i] = new User();
             }
         }
-
-
+        
         public void InitUserBase()
         {
             Console.WriteLine("---InitUserBase()");
@@ -154,7 +153,7 @@ namespace MyShop
                 this.NewBase(5);
             }
         }
-        //----------------------------------------------
+        
         public void BinarySave()
         {
             Console.WriteLine(" BinarySave()");
@@ -191,7 +190,21 @@ namespace MyShop
             br.Close();
         }
 
+        public void AddNewUser(User user)
+        {
+            User[] newBase = new User[numberOfCustomers + 1];
+            
+            for(int i = 0; i < numberOfCustomers; ++i)
+            {
+                newBase[i] = Customers[i];
+            }
 
+            newBase[numberOfCustomers] = user;
+            numberOfCustomers += 1;
+            Customers = newBase;
+        }
+
+        
 
 
 

@@ -13,7 +13,7 @@ namespace ClientOfMyShop
         public string Soname;
         public int Age;
         public double Account;
-        public int Hash;
+        public string Sex;
         public string Id;
 
         Product[] AlreadyBuy;
@@ -23,6 +23,7 @@ namespace ClientOfMyShop
             this.Name = name;
             this.Soname = soname;
             this.Age = age;
+
 
             if (account != 0)
                 this.Account = account;
@@ -40,6 +41,7 @@ namespace ClientOfMyShop
             this.Soname = "default_soname";
             this.Age = r.Next(1, 99);
             this.Account = 99.99;
+            this.Sex = "default_sex";
             this.Id = Guid.NewGuid().ToString();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("new user ID = " + this.Id);

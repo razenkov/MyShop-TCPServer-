@@ -7,7 +7,7 @@ using System.IO;
 
 namespace MyShop
 {
-    class User
+    public class User
     {
         public string Name;
         public string Soname;

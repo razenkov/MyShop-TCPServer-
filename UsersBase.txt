@@ -1,5 +1,5 @@
-default_name*default_soname*32*99.99*35299460-9736-427c-aa5a-51598c8b0b39
-default_name*default_soname*32*99.99*7917555a-6cb7-4d5b-b7c1-0c290d4f4cc0
-default_name*default_soname*32*99.99*fd5a681b-2fca-491f-b257-d453f6b6d91c
-default_name*default_soname*32*99.99*c4147132-7829-44e3-9e50-a2bb0927612e
-default_name*default_soname*32*99.99*8c590f1d-77a5-4a74-b1aa-0d85991eaa45
+default_name*default_soname*4*99.99*dcc050d6-1b32-426c-94ea-c75d0ee75ee0
+default_name*default_soname*4*99.99*69e3b542-ffb5-48f8-aaee-c34ff2ea7074
+default_name*default_soname*4*99.99*aec3d9e0-b532-4bb7-97e3-e2384555c579
+default_name*default_soname*4*99.99*c1857612-9f1c-4f23-8573-20f39ca89584
+default_name*default_soname*4*99.99*8c2c3ab6-0fd2-4bb6-a375-cc94b56e0d29

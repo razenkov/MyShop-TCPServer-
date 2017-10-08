@@ -21,9 +21,11 @@ namespace MyShop
 
             ProductBase Productbase = new ProductBase();
             Productbase.Start();
-           
+
             //startup server
-            //new Server().StartUp();
+            Server server1 = new Server();
+            server1.StartUp(ref Userbase, ref Productbase);
+            
         }
     }
 }

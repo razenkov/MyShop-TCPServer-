@@ -11,10 +11,9 @@ namespace MyShop
 {
     class Server
     {
-        public void StartUp()
+        public void StartUp(ref UserBase uBase, ref ProductBase pBase)
         {
             Console.WriteLine("Server waiting for connection....");
-
             Socket listener = new Socket(SocketType.Stream, ProtocolType.Tcp);
             listener.Bind(new IPEndPoint(0, 1080));
 
@@ -30,6 +29,12 @@ namespace MyShop
                 Console.Write(client.GetHashCode());
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine();
+
+
+                void DataToThread()
+                {
+
+                }
 
                 var childSocketThread = new Thread(() =>
                 {
@@ -54,10 +59,11 @@ namespace MyShop
                                 client.Close();
                                 break;
                             case 1:
+                                //Menu
                                 SendMenu(client);
                                 break;
                             case 2:
-                                //showProducts
+                               //ShowProducts
                                 break;
                             case 3:
                                 //choose product
@@ -69,8 +75,9 @@ namespace MyShop
                                 //to cansel
                                 break;
                             case 6:
+                                //RegistrateNewUser(uBase, client);
                             //if you are new customer please press 6
-                           // RegistrateNewUser(client);
+                            // RegistrateNewUser(client);
                                 break;
                             default:
                                 break;
@@ -96,7 +103,7 @@ namespace MyShop
             client.Send(menuMsg);
         }
 
-        public void RegistrateNewUser(List<User> userBase, Socket client)
+        public void RegistrateNewUser(Socket client)
         {
             byte[] name = new byte[1024];
             client.Send(Encoding.Default.GetBytes("Please enter your name"));
@@ -120,7 +127,10 @@ namespace MyShop
             User user = new User(n, s, a, 0);
 
             user.Hash = user.GetHashCode();
-            userBase.Add(user);
+            //uBase.AddNewUser(ref user);
         }
+
+        
+
     }
 }
