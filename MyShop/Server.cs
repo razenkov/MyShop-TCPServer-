@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+
 
 namespace MyShop
 {
@@ -130,7 +133,32 @@ namespace MyShop
             //uBase.AddNewUser(ref user);
         }
 
-        
+        public static User ConvertByteArrayToUser(byte[] array)
+        {
+            User user = new User();
+
+            MemoryStream memStream = new MemoryStream();
+            BinaryFormatter binForm = new BinaryFormatter();
+            memStream.Write(array, 0, array.Length);
+            memStream.Seek(0, SeekOrigin.Begin);
+            Object obj = (Object)binForm.Deserialize(memStream);
+
+            return user;
+        }
+
+        public static byte[] ConvertUserToByteArray(User user)
+        {
+            if (user == null)
+                return null;
+
+            BinaryFormatter bf = new BinaryFormatter();
+            MemoryStream ms = new MemoryStream();
+            bf.Serialize(ms, user);
+
+            return ms.ToArray();
+        }
 
     }
 }
+
+

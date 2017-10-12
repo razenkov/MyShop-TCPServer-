@@ -13,8 +13,8 @@ namespace MyShop
 
             //develop
 
-            MyShop Shop = new MyShop();
-            Shop.Start();
+            //MyShop Shop = new MyShop();
+            //Shop.Start();
 
             UserBase Userbase = new UserBase();
             Userbase.Start();
