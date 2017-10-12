@@ -34,57 +34,85 @@ namespace MyShop
                 Console.WriteLine();
 
 
-                void DataToThread()
-                {
-
-                }
-
                 var childSocketThread = new Thread(() =>
                 {
                     int choice = -1;
                     byte[] data = new byte[1024];
                     while (true)
                     {
+                        byte[] buffer = new byte[1024];
+                        int recive = client.Receive(buffer, 0, buffer.Length, 0);
+
+                        User u1 = DeserializeObj(buffer);
+                        Console.WriteLine("=======================================================================================");
+                        Console.WriteLine(u1.Id);
+                        Console.WriteLine("=======================================================================================");
+
+                        Console.Read();
 
                         int size = client.Receive(data);
                         Console.WriteLine("Recieved data from client " + client.GetHashCode() + ": ");
-                        
 
-                        for (int i = 0; i < size; i++)
-                            Console.Write(Convert.ToChar(data[i]));
+                        while (true)
 
-                        Console.WriteLine();
-
-                        switch (choice)
                         {
-                            case 0:
-                                //exit
-                                client.Close();
-                                break;
-                            case 1:
-                                //Menu
-                                SendMenu(client);
-                                break;
-                            case 2:
-                               //ShowProducts
-                                break;
-                            case 3:
-                                //choose product
-                                break;
-                            case 4:
-                                //to buy
-                                break;
-                            case 5:
-                                //to cansel
-                                break;
-                            case 6:
-                                //RegistrateNewUser(uBase, client);
-                            //if you are new customer please press 6
-                            // RegistrateNewUser(client);
-                                break;
-                            default:
-                                break;
-                        }                                         
+                            Console.WriteLine("Enter msg to client: ");
+
+                            string msg = Console.ReadLine();
+
+                            byte[] msgBuffer = Encoding.Default.GetBytes(msg);
+
+                            client.Send(msgBuffer, 0, msgBuffer.Length, 0);
+
+                            //byte[] buffer = new byte[255];
+
+                            //int recive = client.Receive(buffer, 0, buffer.Length, 0);
+
+                            Array.Resize(ref buffer, recive);
+
+                            Console.WriteLine("Resived from client: {0}", Encoding.Default.GetString(buffer));
+
+
+                        }
+
+
+                        //for (int i = 0; i < size; i++)
+                        //  Console.Write(Convert.ToChar(data[i]));
+
+                        Console.WriteLine("SEFORE SWITCH");
+
+                   
+
+                        //switch (choice)
+                        //{
+                        //    case 0:
+                        //        //exit
+                        //        client.Close();
+                        //        break;
+                        //    case 1:
+                        //        //Menu
+                        //        SendMenu(client);
+                        //        break;
+                        //    case 2:
+                        //       //ShowProducts
+                        //        break;
+                        //    case 3:
+                        //        //choose product
+                        //        break;
+                        //    case 4:
+                        //        //to buy
+                        //        break;
+                        //    case 5:
+                        //        //to cansel
+                        //        break;
+                        //    case 6:
+                        //        //RegistrateNewUser(uBase, client);
+                        //    //if you are new customer please press 6
+                        //    // RegistrateNewUser(client);
+                        //        break;
+                        //    default:
+                        //        break;
+                        //}                                         
                     }                    
                 });
 
@@ -158,6 +186,32 @@ namespace MyShop
             return ms.ToArray();
         }
 
+        public static User DeserializeObj(byte[] buffer)
+        {
+            Console.WriteLine("DeserializeObj");
+            using (System.IO.MemoryStream stream = new System.IO.MemoryStream(buffer))
+            {
+                stream.Position = 0;
+                Object desObj = new BinaryFormatter().Deserialize(stream);
+                return (User)desObj;
+            }
+        }
+
+        public static byte[] SerializeObj(User user)
+        {
+
+            Console.WriteLine("SerializeObj");
+            using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
+            {
+                System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                formatter.Serialize(stream, user);
+
+                byte[] bytes = stream.ToArray();
+                stream.Flush();
+
+                return bytes;
+            }
+        }
     }
 }
 
