@@ -8,12 +8,24 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Reflection;
+using UserNamespace;
+
 
 
 namespace MyShop
 {
     class Server
     {
+        
+       
+        
+
+
+
+
+
         public void StartUp(ref UserBase uBase, ref ProductBase pBase)
         {
             Console.WriteLine("Server waiting for connection....");
@@ -36,21 +48,28 @@ namespace MyShop
 
                 var childSocketThread = new Thread(() =>
                 {
-                    int choice = -1;
-                    byte[] data = new byte[1024];
+                    byte[] buffer = new byte[1024];
+                    int recive = client.Receive(buffer, 0, buffer.Length, 0);
+                    Array.Resize(ref buffer, recive);
+
+
+                    Console.WriteLine("=======================================================================================");
+                    User u1 = new User();
+
+                    u1 = (User)DeserializeObj(buffer);
+
+                    Console.WriteLine(u1.Id);
+                    Console.WriteLine("=======================================================================================");
+
+                    Console.Read();
+
+                    Console.Read();
+
                     while (true)
                     {
-                        byte[] buffer = new byte[1024];
-                        int recive = client.Receive(buffer, 0, buffer.Length, 0);
+                        
 
-                        User u1 = DeserializeObj(buffer);
-                        Console.WriteLine("=======================================================================================");
-                        Console.WriteLine(u1.Id);
-                        Console.WriteLine("=======================================================================================");
-
-                        Console.Read();
-
-                        int size = client.Receive(data);
+                        
                         Console.WriteLine("Recieved data from client " + client.GetHashCode() + ": ");
 
                         while (true)
@@ -157,61 +176,49 @@ namespace MyShop
 
             User user = new User(n, s, a, 0);
 
-            user.Hash = user.GetHashCode();
+            //user.Hash = user.GetHashCode();
             //uBase.AddNewUser(ref user);
         }
 
-        public static User ConvertByteArrayToUser(byte[] array)
+
+        //serialize
+        public static byte[] SerializeObj(object obj)
         {
-            User user = new User();
-
-            MemoryStream memStream = new MemoryStream();
-            BinaryFormatter binForm = new BinaryFormatter();
-            memStream.Write(array, 0, array.Length);
-            memStream.Seek(0, SeekOrigin.Begin);
-            Object obj = (Object)binForm.Deserialize(memStream);
-
-            return user;
-        }
-
-        public static byte[] ConvertUserToByteArray(User user)
-        {
-            if (user == null)
-                return null;
-
-            BinaryFormatter bf = new BinaryFormatter();
-            MemoryStream ms = new MemoryStream();
-            bf.Serialize(ms, user);
-
-            return ms.ToArray();
-        }
-
-        public static User DeserializeObj(byte[] buffer)
-        {
-            Console.WriteLine("DeserializeObj");
-            using (System.IO.MemoryStream stream = new System.IO.MemoryStream(buffer))
-            {
-                stream.Position = 0;
-                Object desObj = new BinaryFormatter().Deserialize(stream);
-                return (User)desObj;
-            }
-        }
-
-        public static byte[] SerializeObj(User user)
-        {
-
-            Console.WriteLine("SerializeObj");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("serialize");
             using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
             {
                 System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                formatter.Serialize(stream, user);
+                formatter.Serialize(stream, obj);
 
                 byte[] bytes = stream.ToArray();
                 stream.Flush();
 
                 return bytes;
             }
+            Console.ForegroundColor = ConsoleColor.White;
+
         }
+
+        //deserialize
+        public static object DeserializeObj(byte[] binaryObj)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("deserialize");
+            using (System.IO.MemoryStream stream = new System.IO.MemoryStream(binaryObj))
+            {
+                stream.Position = 0;
+                object desObj = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter().Deserialize(stream);
+                return desObj;
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+
+        }
+
+
+
+
+
     }
 }
 

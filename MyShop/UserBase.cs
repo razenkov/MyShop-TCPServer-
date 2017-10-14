@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using UserNamespace;
 
 namespace MyShop
 {
@@ -190,19 +191,19 @@ namespace MyShop
             br.Close();
         }
 
-        public void AddNewUser(User user)
-        {
-            User[] newBase = new User[numberOfCustomers + 1];
+        //public void AddNewUser(User user)
+        //{
+        //    User[] newBase = new User[numberOfCustomers + 1];
             
-            for(int i = 0; i < numberOfCustomers; ++i)
-            {
-                newBase[i] = Customers[i];
-            }
+        //    for(int i = 0; i < numberOfCustomers; ++i)
+        //    {
+        //        newBase[i] = Customers[i];
+        //    }
 
-            newBase[numberOfCustomers] = user;
-            numberOfCustomers += 1;
-            Customers = newBase;
-        }
+        //    newBase[numberOfCustomers] = user;
+        //    numberOfCustomers += 1;
+        //    Customers = newBase;
+        //}
 
         
 

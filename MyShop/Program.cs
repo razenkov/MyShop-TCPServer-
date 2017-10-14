@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
+using UserNamespace;
 
 namespace MyShop
 {
@@ -11,6 +13,8 @@ namespace MyShop
         static void Main(string[] args)
         {
 
+            
+         
             //develop
 
             //MyShop Shop = new MyShop();
